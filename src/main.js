@@ -19,6 +19,7 @@ import unbindPhone from "./components/NtcsForms/unbindPhone";
 import jiami from "./components/NtcsForms/jiami";
 import bjUnbind from "./components/NtcsForms/bjUnbind";
 import clearUserStatus from "./components/NtcsForms/clearUserStatus";
+import liFangTong from "./components/NtcsForms/liFangTong";
 
 const routes = [
     {
@@ -32,6 +33,7 @@ const routes = [
             {path: 'jiami', component: jiami},
             {path: 'bjUnbind', component: bjUnbind},
             {path: 'clearUserStatus', component: clearUserStatus},
+            {path: 'liFangTong', component: liFangTong},
         ]
     },
     {path:'*',redirect:'/ntcs/pullBiz'},

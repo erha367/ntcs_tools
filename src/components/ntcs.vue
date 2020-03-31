@@ -25,6 +25,16 @@
                             <i class="el-icon-setting"></i>
                             <span slot="title"><router-link to="/ntcs/clearUserStatus">清理用户确认身份状态</router-link></span>
                         </el-menu-item>
+                        <el-menu-item index="6">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"><router-link to="/ntcs/liFangTong">理房通反查工具</router-link></span>
+                        </el-menu-item>
+                        <el-menu-item index="7">
+                            <a href="./rsync/data" target="_blank">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"> 配置数据同步（沙盒）</span>
+                            </a>
+                        </el-menu-item>
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
@@ -47,11 +57,8 @@
                                 <el-menu-item index="1-4">
                                     <router-link to="/ntcs/bjUnbind">用户解绑 [北京]</router-link>
                                 </el-menu-item>
-                                <a href="./rsync/data" target="_blank">
-                                    <el-menu-item index="1-6">配置数据同步</el-menu-item>
-                                </a>
                                 <a href="http://10.26.28.169:8001/static/" target="_blank">
-                                    <el-menu-item index="1-6">Kafka发射器</el-menu-item>
+                                    <el-menu-item index="1-7">Kafka发射器</el-menu-item>
                                 </a>
                             </el-menu-item-group>
                         </el-submenu>
@@ -71,37 +78,15 @@
         props: {
             msg: String
         },
-        mounted:function(){
-            this.logInfo();
-        },
         methods: {
             handleOpen(key, keyPath) {
                 //todo 在这里进行权限判断
-                console.log(key, keyPath);
+                //console.log(key, keyPath);
             },
             handleClose(key, keyPath) {
                 //console.log(key, keyPath);
-            },
-            logInfo(){
-                var bizInfoApi = '/tool/userLogInfo';
-                Axios.get(bizInfoApi, {})
-                    .then((response) => {
-                        if (response.data.error || response.data.code != 1) {
-                            this.$message('请求失败');
-                        } else {
-                            if(response.data.data.length > 0){
-                                console.log('用户登录成功，登录信息为:'+response.data.data);
-                            }else{
-                                this.$message('登录失败');
-                            }
-                        }
-                    })
-                    .catch((error) => {
-                        this.$message('系统异常:' + error);
-                    });
             }
             }
-        }
     }
 </script>
 
