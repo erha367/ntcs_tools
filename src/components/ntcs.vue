@@ -29,17 +29,12 @@
                             <i class="el-icon-setting"></i>
                             <span slot="title"><router-link to="/ntcs/liFangTong">理房通反查工具</router-link></span>
                         </el-menu-item>
-                        <el-menu-item index="7">
-                            <a href="./rsync/data" target="_blank">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title"> 配置数据同步（沙盒）</span>
-                            </a>
-                        </el-menu-item>
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
                                 <span>研发专用工具</span>
                             </template>
+                            <div class="results" v-if="show">
                             <el-menu-item-group>
                                 <template slot="title">自研工具</template>
                                 <el-menu-item index="1-1">
@@ -55,12 +50,16 @@
                                     <router-link to="/ntcs/jiami">数据加解密</router-link>
                                 </el-menu-item>
                                 <el-menu-item index="1-4">
-                                    <router-link to="/ntcs/bjUnbind">用户解绑 [北京]</router-link>
+                                    <router-link to="/ntcs/bjUnbind">用户解绑[北京]</router-link>
                                 </el-menu-item>
                                 <a href="http://10.26.28.169:8001/static/" target="_blank">
-                                    <el-menu-item index="1-7">Kafka发射器</el-menu-item>
+                                    <el-menu-item index="1-5">Kafka发射器</el-menu-item>
+                                </a>
+                                <a href="./rsync/data" target="_blank">
+                                    <el-menu-item index="1-6">配置数据同步[沙盒]</el-menu-item>
                                 </a>
                             </el-menu-item-group>
+                            </div>
                         </el-submenu>
                     </el-menu>
                 </el-col>
@@ -73,20 +72,47 @@
 </template>
 
 <script>
+    import Axios from 'axios';
     export default {
         name: 'ntcs',
         props: {
             msg: String
         },
+        data() {
+            return {
+                show: false,
+            }
+        },
         methods: {
             handleOpen(key, keyPath) {
-                //todo 在这里进行权限判断
-                //console.log(key, keyPath);
+                return false;
             },
             handleClose(key, keyPath) {
                 //console.log(key, keyPath);
-            }
-            }
+            },
+        },
+        mounted() {
+            //console.log('模板被编译完成，请求数据放在这里 done');
+            //默认加密
+            var jiami = '/tool/login/info';
+            //var jiami = 'http://weapons.ke.com/mock/1259/tool/login/info';
+            Axios.get(jiami, {params: this.formInline})
+                .then((response) => {
+                    //console.log(response.data);
+                    if (response.data.error || response.data.code != 1) {
+                        this.$message(response.data.msg);
+                    } else {
+                        if (response.data.data != null && response.data.data.auth == 1) {
+                            this.show = true;
+                        } else {
+                            this.show = false;
+                        }
+                    }
+                })
+                .catch((error) => {
+                    this.$message('系统异常:' + error);
+                });
+        },
     }
 </script>
 
