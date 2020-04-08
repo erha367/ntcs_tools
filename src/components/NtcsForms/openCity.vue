@@ -55,7 +55,11 @@
                         if (response.data.error || response.data.code != 1) {
                             this.$message('请求失败');
                         } else {
-                            this.$message('操作成功');
+                            if(response.data.data == true){
+                                this.$message('操作成功');
+                            }else{
+                                this.$message('操作失败' + response.data.data);
+                            }
                         }
                     })
                     .catch((error) => {

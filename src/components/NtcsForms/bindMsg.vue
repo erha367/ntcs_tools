@@ -35,7 +35,7 @@
         },
         methods: {
             onSubmit() {
-                if (this.formInline.businessId.length == 0) {
+                if (this.formInline.bizId.length == 0) {
                     this.$message({
                         message: '参数非法',
                         type: 'warning'
@@ -52,7 +52,7 @@
                         }
                     })
                     .catch((error) => {
-                        this.$message('系统异常:' + error);
+                        this.$message('系统异常: ' + error);
                     });
             }
         }
