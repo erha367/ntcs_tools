@@ -2,6 +2,7 @@
     <div class="ntcs">
         <el-container>
             <el-aside width="200px">
+                <span class="tops" v-if="show > 0">
                 <el-col :span="24">
                     <el-menu
                             default-active="2"
@@ -9,6 +10,7 @@
                             @open="handleOpen"
                             @close="handleClose"
                     >
+
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
                             <span slot="title"><router-link to="/ntcs/pullBiz">拉取交易单</router-link></span>
@@ -29,12 +31,16 @@
                             <i class="el-icon-setting"></i>
                             <span slot="title"><router-link to="/ntcs/liFangTong">理房通反查工具</router-link></span>
                         </el-menu-item>
+                        <el-menu-item index="7">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"><router-link to="/ntcs/bindMsg">发送绑定消息到NTS</router-link></span>
+                        </el-menu-item>
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-location"></i>
                                 <span>研发专用工具</span>
                             </template>
-                            <div class="results" v-if="show">
+                            <div class="results" v-if="show == 1">
                             <el-menu-item-group>
                                 <template slot="title">自研工具</template>
                                 <el-menu-item index="1-1">
@@ -49,8 +55,11 @@
                                 <el-menu-item index="1-4">
                                     <router-link to="/ntcs/jiami">数据加解密</router-link>
                                 </el-menu-item>
-                                <el-menu-item index="1-4">
+                                <el-menu-item index="1-5">
                                     <router-link to="/ntcs/bjUnbind">用户解绑[北京]</router-link>
+                                </el-menu-item>
+                                <el-menu-item index="1-6">
+                                    <router-link to="/ntcs/openCity">开城工具</router-link>
                                 </el-menu-item>
                                 <a href="http://10.26.28.169:8001/static/" target="_blank">
                                     <el-menu-item index="1-5">Kafka发射器</el-menu-item>
@@ -63,10 +72,9 @@
                         </el-submenu>
                     </el-menu>
                 </el-col>
+                </span>
             </el-aside>
-
             <router-view></router-view>
-
         </el-container>
     </div>
 </template>
@@ -94,18 +102,18 @@
         mounted() {
             //console.log('模板被编译完成，请求数据放在这里 done');
             //默认加密
-            var jiami = '/tool/login/info';
-            //var jiami = 'http://weapons.ke.com/mock/1259/tool/login/info';
+            //var jiami = '/tool/login/info';
+            var jiami = 'http://weapons.ke.com/mock/1259/tool/login/info';
             Axios.get(jiami, {params: this.formInline})
                 .then((response) => {
                     //console.log(response.data);
                     if (response.data.error || response.data.code != 1) {
                         this.$message(response.data.msg);
                     } else {
-                        if (response.data.data != null && response.data.data.auth == 1) {
-                            this.show = true;
+                        if (response.data.data != null) {
+                            this.show = response.data.data.auth
                         } else {
-                            this.show = false;
+                            this.show = 0;
                         }
                     }
                 })

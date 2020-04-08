@@ -20,6 +20,9 @@ import jiami from "./components/NtcsForms/jiami";
 import bjUnbind from "./components/NtcsForms/bjUnbind";
 import clearUserStatus from "./components/NtcsForms/clearUserStatus";
 import liFangTong from "./components/NtcsForms/liFangTong";
+import ntcsIndex from "./components/NtcsForms/ntcsIndex";
+import bindMsg from "./components/NtcsForms/bindMsg";
+import openCity from "./components/NtcsForms/openCity";
 
 const routes = [
     {
@@ -34,9 +37,12 @@ const routes = [
             {path: 'bjUnbind', component: bjUnbind},
             {path: 'clearUserStatus', component: clearUserStatus},
             {path: 'liFangTong', component: liFangTong},
+            {path: 'ntcsIndex', component: ntcsIndex},
+            {path: 'bindMsg', component: bindMsg},
+            {path: 'openCity', component: openCity},
         ]
     },
-    {path:'*',redirect:'/ntcs/pullBiz'},
+    {path:'*',redirect:'/ntcs/ntcsIndex'},
 ]
 const router = new VueRouter({
     //mode:'history', //默认是hash模式
