@@ -37,3 +37,29 @@ rm -rf ctools
 mv dist ctools
 echo -e "ntcs static complete..! \n"
 ```
+
+## 项目结构
+``` 
+src/
+├── App.vue //项目框架
+├── assets
+│   ├── logo.png
+│   └── logo_left.png
+├── components
+│   ├── NtcsForms   //可视化具体表单目录
+│   │   ├── bindMsg.vue
+│   │   ├── bindPhone.vue
+│   │   ├── bjUnbind.vue
+│   │   ├── clearUserStatus.vue
+│   │   ├── jiami.vue
+│   │   ├── liFangTong.vue
+│   │   ├── ntcsIndex.vue
+│   │   ├── ntsApi.vue
+│   │   ├── openCity.vue
+│   │   ├── phoneList.vue
+│   │   ├── pullBiz.vue
+│   │   ├── unbindPhone.vue
+│   │   └── userInfo.vue
+│   └── ntcs.vue    //左侧菜单栏
+└── main.js //入口文件，里面有路由
+```
