@@ -25,3 +25,15 @@ cnpm install
 //运行代码
 npm run serve
 ```
+
+## 编译、替换脚本(文件路径以实际为准)
+```shell script
+cd /htdocs/ntcs_tools
+npm run build
+echo -e "build done..! \n"
+cd /htdocs/ntcs/public
+cp -R /htdocs/ntcs_tools/dist /htdocs/ntcs/public/dist
+rm -rf ctools
+mv dist ctools
+echo -e "ntcs static complete..! \n"
+```
