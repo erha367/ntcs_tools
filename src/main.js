@@ -23,6 +23,9 @@ import liFangTong from "./components/NtcsForms/liFangTong";
 import ntcsIndex from "./components/NtcsForms/ntcsIndex";
 import bindMsg from "./components/NtcsForms/bindMsg";
 import openCity from "./components/NtcsForms/openCity";
+import resetCheckShort from "./components/NtcsForms/resetCheckShort";
+import getContractProtocols from "./components/NtcsForms/getContractProtocols";
+import dataCompare from "./components/NtcsForms/dataCompare";
 
 const routes = [
     {
@@ -40,6 +43,9 @@ const routes = [
             {path: 'ntcsIndex', component: ntcsIndex},
             {path: 'bindMsg', component: bindMsg},
             {path: 'openCity', component: openCity},
+            {path: 'resetCheckShort', component: resetCheckShort},
+            {path: 'getContractProtocols', component: getContractProtocols},
+            {path: 'dataCompare', component: dataCompare},
         ]
     },
     {path:'*',redirect:'/ntcs/ntcsIndex'},

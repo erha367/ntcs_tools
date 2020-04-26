@@ -10,7 +10,6 @@
                             @open="handleOpen"
                             @close="handleClose"
                     >
-
                         <el-menu-item index="2">
                             <i class="el-icon-menu"></i>
                             <span slot="title"><router-link to="/ntcs/pullBiz">拉取交易单</router-link></span>
@@ -34,6 +33,18 @@
                         <el-menu-item index="7">
                             <i class="el-icon-setting"></i>
                             <span slot="title"><router-link to="/ntcs/bindMsg">发送绑定消息到NTS</router-link></span>
+                        </el-menu-item>
+                        <el-menu-item index="8">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"><router-link to="/ntcs/resetCheckShort">重置用户后4位验证上限</router-link></span>
+                        </el-menu-item>
+                        <el-menu-item index="9">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"><router-link to="/ntcs/getContractProtocols">查询履约协议</router-link></span>
+                        </el-menu-item>
+                        <el-menu-item index="10">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title"><router-link to="/ntcs/dataCompare">用户数据比对</router-link></span>
                         </el-menu-item>
                         <el-submenu index="1">
                             <template slot="title">
@@ -102,8 +113,8 @@
         mounted() {
             //console.log('模板被编译完成，请求数据放在这里 done');
             //默认加密
-            var jiami = '/tool/login/info';
-            //var jiami = 'http://weapons.ke.com/mock/1259/tool/login/info';
+            //var jiami = '/tool/login/info';
+            var jiami = 'http://weapons.ke.com/mock/1259/tool/login/info';
             Axios.get(jiami, {params: this.formInline})
                 .then((response) => {
                     //console.log(response.data);
