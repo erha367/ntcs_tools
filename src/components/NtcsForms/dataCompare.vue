@@ -122,6 +122,13 @@
         },
         methods: {
             onSubmit() {
+                /* - 后端上线后删掉 start -*/
+                this.$message({
+                    message: '该功能暂未开放，敬请期待！',
+                    type: 'warning'
+                });
+                return false;
+                /* - 后端上线后删掉 end -*/
                 if (this.formInline.contractNo.length == 0) {
                     this.$message({
                         message: '参数非法',
